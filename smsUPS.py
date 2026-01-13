@@ -1134,7 +1134,7 @@ def checkBatteryLevel(upsData):
     BateriaEmUso = upsData['BateriaEmUso']
     if bat < UPS_BATERY_LEVEL and bat!=0 and not upsData['noData']:
         # bateria acabando.
-        checkBatteryLevel2(bat, upsData['BateriaBaixa'], BateriaEmUso, int(upsData['inputVac'], upsData['noData']) )
+        checkBatteryLevel2(bat, upsData['BateriaBaixa'], BateriaEmUso, upsData['inputVac'], upsData['noData'])
         #if upsData['BateriaBaixa']=="on" or upsData['BateriaEmUso']=='on': # evita shutdown no pico de volta
         #    client.publish(MQTT_PUB + "/cmd", MQTT_CMD_SHUTDOWN )
     if IN_HASSIO:
