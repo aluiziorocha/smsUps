@@ -117,7 +117,7 @@ class Color:
     B_White = "\x1b[107m"
 
 # CONST
-VERSAO = '0.43'
+VERSAO = '0.45'
 CR = '0D'
 MANUFACTURER = 'SMS'
 VIA_DEVICE = 'smsUPS'
