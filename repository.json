@@ -1,5 +1,5 @@
 {
-  "name": "Dmslabs Home Assistant Add-ons",
-  "url": "https://github.com/dmslabsbr/smsUps",
-  "maintainer": "Daniel <suport@neoage.com.br>"
+  "name": "SMS UPS Home Assistant Add-ons",
+  "url": "https://github.com/aluiziorocha/smsUps",
+  "maintainer": "Aluizio Rocha <aluiziorocha@gmail.com>"
 }
