@@ -76,7 +76,7 @@ HASS_CMD_NOTIFY = '''echo `curl -sS -X POST \
 '''
 HASS_DEFAULT_SHUTDOWN_ID = "54543122"
 HASS_DEFAULT_NOENERGY_ID = "54543123"
-WEB_SERVER = True
+WEB_SERVER = False
 
 class Color:
     # Foreground
