@@ -117,7 +117,7 @@ class Color:
     B_White = "\x1b[107m"
 
 # CONST
-VERSAO = '0.47'
+VERSAO = '0.48'
 CR = '0D'
 MANUFACTURER = 'SMS'
 VIA_DEVICE = 'smsUPS'
@@ -204,6 +204,7 @@ json_hass = {"sensor": '''
 { 
   "state_topic": "homeassistant/sensor/$ups_id/state",
   "name": "$name",
+  "friendly_name": "$friendly_name",
   "unique_id": "$unique_id",
   "value_template": "{{ value_json.$value_template }}",
   "icon": "$icon",
@@ -230,9 +231,10 @@ json_hass = {"sensor": '''
 { 
   "state_topic": "homeassistant/switch/$ups_id/state",
   "name": "$name",
+  "friendly_name": "$friendly_name",
   "cmd_t":"home/$ups_id/cmd",
   "icon":"$icon",
-  "uniq_id": "$uniq_id",
+  "unique_id": "$unique_id",
   "val_tpl": "$val_tpl",
   "device": { $device_dict },
   "pl_on": "$pl_on",
@@ -251,6 +253,10 @@ device_dict = ''' "name": "$device_name",
     "sw_version": "$sw_version",
     "via_device": "$via_device",
     "identifiers": [ "$identifiers" ] '''
+
+origin_dict = ''' "name": "dmslabsbr",
+    "sw_version": "$sw_version",
+    "support_url": "https://github.com/dmslabsbr" '''
 
 sensor_dic = dict() # {}
 
@@ -1226,20 +1232,21 @@ def monta_publica_topico(component, sDict, varComuns):
     for key,dic in newDict.items():
         # print(key,dic)
         if key[:1] != '#':
-            varComuns['uniq_id']=varComuns['identifiers'] + "_" + key
+            varComuns['unique_id']=varComuns['identifiers'] + "_" + key
             if not('val_tpl' in dic):
                 dic['val_tpl'] = dic['name']
-            dic['name'] = varComuns['uniq_id']
+            dic['name'] = varComuns['unique_id']
             dic['device_dict'] = device_dict
+            dic['origin_dict'] = origin_dict
             dic['publish_time'] = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
             dic['expire_after'] = INTERVALO_EXPIRE # quando deve expirar
             dados = Template(json_hass[component]) # sensor
             dados = Template(dados.safe_substitute(dic))
             dados = Template(dados.safe_substitute(varComuns)) # faz ultimas substituições
             dados = dados.safe_substitute(key_todos) # remove os não substituidos.
-            topico = MQTT_HASS + "/" + component + "/" + NODE_ID + "/" + varComuns['uniq_id'] + "/config"
-            # print(topico)
-            # print(dados)
+            topico = MQTT_HASS + "/" + component + "/" + varComuns['unique_id'] + "/config"
+            print(topico)
+            print(dados)
             dados = json_remove_vazio(dados)
             (rc, mid) = publicaMqtt(topico, dados)
             # print ("rc: ", rc)
@@ -1258,7 +1265,7 @@ def send_hass():
                  'identifiers': UPS_NAME + "_" + UPS_ID,
                  'via_device': VIA_DEVICE,
                  'ups_id': UPS_NAME_ID,
-                 'uniq_id': UPS_ID}
+                 'unique_id': UPS_ID}
     if DEVELOPERS_MODE:
         log.debug('Sensor_dic: ' + str(len(sensor_dic)))
     if len(sensor_dic) == 0:
