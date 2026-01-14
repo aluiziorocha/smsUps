@@ -2,6 +2,7 @@
     "#BeepLigado":{
        "name": "BeepLigado",
        "friendly_name":"Beep Ligado",
+       "val_tpl": "{{value_json.BeepLigado}}",
        "pl_on": "on",
        "pl_off": "off",
        "pl_avail": "",
@@ -10,14 +11,16 @@
     "ShutdownAtivo":{
        "name": "ShutdownAtivo",
        "friendly_name":"Shutdown Ativo",
+       "val_tpl":"{{ value_json.ShutdownAtivo }}",
        "pl_on": "on",
        "pl_off": "off",
        "pl_avail": "on",
        "pl_not_avail": "off"
     },
     "TesteAtivo":{
-         "name": "TesteAtivo",
+       "name": "TesteAtivo",
        "friendly_name":"Teste Ativo",
+       "val_tpl":"{{ value_json.TesteAtivo }}",
        "pl_on": "on",
        "pl_off": "off",
        "pl_avail": "on",
@@ -26,6 +29,7 @@
     "UpsOk":{
        "name": "UpsOk",
        "friendly_name":"UPS OK",
+       "val_tpl":"{{ value_json.UpsOk }}",
        "device_class":"safety",
        "pl_on": "off",
        "pl_off": "on",
@@ -35,6 +39,7 @@
     "Boost":{
        "name": "Boost",
        "friendly_name":"Boost",
+       "val_tpl":"{{ value_json.Boost }}",
        "device_class":"power",
        "pl_on": "on",
        "pl_off": "off",
@@ -44,6 +49,7 @@
     "ByPass":{
        "name": "ByPass",
        "friendly_name":"ByPass",
+       "val_tpl":"{{ value_json.ByPass }}",
        "device_class":"power",
        "pl_on": "on",
        "pl_off": "off",
@@ -53,6 +59,7 @@
     "BateriaBaixa":{
        "name": "BateriaBaixa",
        "friendly_name":"Bateria Baixa",
+       "val_tpl":"{{ value_json.BateriaBaixa }}",
        "device_class":"battery",
        "pl_on": "on",
        "pl_off": "off",
@@ -62,6 +69,7 @@
     "BateriaEmUso":{
        "name": "BateriaEmUso",
        "friendly_name":"Bateria em Uso",
+       "val_tpl":"{{ value_json.BateriaEmUso }}",
        "device_class":"battery_charging",
        "pl_on": "on",
        "pl_off": "off",
@@ -71,6 +79,7 @@
     "todos":{
        "name":"",
        "device_class":"",
+       "val_tpl":"",
        "pl_on": "",
        "pl_off": "",
        "pl_avail": "",
