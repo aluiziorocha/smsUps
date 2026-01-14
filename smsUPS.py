@@ -1231,7 +1231,7 @@ def send_hass():
                  'manufacturer': MANUFACTURER,
                  'device_name': noBreakInfo['name'],
                  'identifiers': UPS_NAME + "_" + UPS_ID,
-                 'via_device': VIA_DEVICE,
+#                 'via_device': VIA_DEVICE,
                  'ups_id': UPS_NAME_ID,
                  'unique_id': UPS_ID}
     if DEVELOPERS_MODE:
@@ -1423,11 +1423,11 @@ def publicaDados(upsData):
     global status
     global gMqttEnviado
     jsonUPS = json.dumps(upsData)
-    topic = MQTT_PUB + UPS_NAME_ID + "/state"
+    topic = MQTT_HASS + "/" + UPS_NAME_ID + "/state"
     payload = jsonUPS
     if DEVELOPERS_MODE:
-        print(topic)
-        print(payload)
+        print("Tópico: " + topic)
+        print("Payload: " + payload)
     (rc, mid) = publicaMqtt(topic, payload)
     gMqttEnviado['b'] = True
     gMqttEnviado['t'] = datetime.now()
