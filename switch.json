@@ -1,7 +1,6 @@
 {
     "Beep":{
-       "name":"Beep",
-       "friendly_name": "Alarme Sonoro",
+       "name": "Alarme Sonoro",
        "cmd_t":"home/ups/cmd",
        "icon":"mdi:music-note",
        "val_tpl":"{{ value_json.BeepLigado }}",
@@ -17,8 +16,7 @@
        "state_on": "on" 
     },
     "test_10s":{
-      "name":"test_10s",
-      "friendly_name":"Teste de 10 segundos",
+      "name":"Teste de 10 segundos",
       "cmd_t":"home/ups/cmd",
       "icon":"mdi:timer-10",
       "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -32,8 +30,7 @@
       "state_on": "on"
    },
     "test_01m":{
-      "name":"test_01m",
-      "friendly_name":"Teste de 1 minuto",
+      "name":"Teste de 1 minuto",
       "cmd_t":"home/ups/cmd",
       "icon":"mdi:timer-sand",
       "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -48,8 +45,7 @@
       "state_on": "on" 
    },
    "test_05m":{
-      "name":"test_05m",
-      "friendly_name":"Teste de 5 minutos",
+      "name":"Teste de 5 minutos",
       "cmd_t":"home/ups/cmd",
       "icon":"mdi:timer-sand",
       "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -64,8 +60,7 @@
       "state_on": "on" 
    },
    "cancel_Shutdown":{
-      "name":"Cancel Shutdown",
-      "friendly_name":"Cancelar Desligamento",
+      "name":"Cancelar Desligamento",
       "cmd_t":"home/ups/cmd",
       "icon":"mdi:cancel",
       "val_tpl":"{{ value_json.ShutdownAtivo }}",
@@ -77,8 +72,7 @@
       "state_on": "off" 
    },
    "cancel_test":{
-      "name":"Cancel Test",
-      "friendly_name":"Cancelar Teste",
+      "name":"Cancelar Teste",
       "cmd_t":"home/ups/cmd",
       "icon":"mdi:cancel",
       "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -90,8 +84,7 @@
       "state_on": "off" 
    },
    "test_low":{
-      "name":"Test low battery",
-      "friendly_name":"Teste de bateria fraca",
+      "name":"Teste de bateria fraca",
       "cmd_t":"home/ups/cmd",
       "icon":"mdi:timer-sand",
       "val_tpl":"{{ value_json.TesteAtivo }}",

@@ -47,9 +47,6 @@ SERIAL_CHECK_ALWAYS = 'temperatureC, batterylevel, UpsOk, BateriaBaixa, BateriaE
 MQTT_TOPIC  = "$SYS/#"
 MQTT_PUB = "home/ups"
 MQTT_HASS = "homeassistant"
-ENVIA_JSON = True
-ENVIA_MUITOS = True
-ENVIA_HASS = True
 ECHO = True
 SMSUPS_SERVER = True
 SMSUPS_CLIENTE = True
@@ -206,20 +203,22 @@ json_hass = {"sensor": '''
   "name": "$name",
   "friendly_name": "$friendly_name",
   "unique_id": "$unique_id",
-  "value_template": "{{ value_json.$value_template }}",
+  "val_tpl": "$val_tpl",
   "icon": "$icon",
   "device_class": "$device_class",
   "expire_after": "$expire_after",
-  "device": { $device_dict }
+  "device": { $device_dict },
+  "origin": { $origin_dict }
 }''',
     "binary_sensor": '''
 { 
   "state_topic": "homeassistant/binary_sensor/$ups_id/state",
   "name": "$name",
   "unique_id": "$unique_id",
-  "value_template": "{{ value_json.$value_template }}",
+  "val_tpl": "$val_tpl",
   "device_class": "$device_class",
   "device": { $device_dict },
+  "origin": { $origin_dict },
   "expire_after": "$expire_after",
   "pl_on": "$pl_on",
   "pl_off": "$pl_off",
@@ -237,6 +236,7 @@ json_hass = {"sensor": '''
   "unique_id": "$unique_id",
   "val_tpl": "$val_tpl",
   "device": { $device_dict },
+  "origin": { $origin_dict },
   "pl_on": "$pl_on",
   "pl_off": "$pl_off",
   "pl_avail": "$pl_avail",
@@ -254,7 +254,7 @@ device_dict = ''' "name": "$device_name",
     "via_device": "$via_device",
     "identifiers": [ "$identifiers" ] '''
 
-origin_dict = ''' "name": "dmslabsbr",
+origin_dict = ''' "name": "smsUPS",
     "sw_version": "$sw_version",
     "support_url": "https://github.com/dmslabsbr" '''
 
@@ -381,9 +381,6 @@ def get_secrets():
     global INTERVALO_HASS
     global INTERVALO_SERIAL
     global SERIAL_CHECK_ALWAYS
-    global ENVIA_JSON
-    global ENVIA_MUITOS
-    global ENVIA_HASS
     global ECHO
     global UPS_NAME
     global UPS_ID
@@ -416,9 +413,6 @@ def get_secrets():
     INTERVALO_SERIAL = get_config(config, 'config','INTERVALO_SERIAL', INTERVALO_SERIAL, getInt=True)
     INTERVALO_HASS = get_config(config, 'config','INTERVALO_HASS', INTERVALO_HASS, getInt=True)
     SERIAL_CHECK_ALWAYS =  get_config(config, 'config','SERIAL_CHECK_ALWAYS', SERIAL_CHECK_ALWAYS, split = True)
-    ENVIA_JSON = get_config(config, 'config','ENVIA_JSON', ENVIA_JSON, getBool=True)
-    ENVIA_MUITOS = get_config(config, 'config','ENVIA_MUITOS', ENVIA_MUITOS, getBool=True)
-    ENVIA_HASS = get_config(config, 'config','ENVIA_HASS', ENVIA_HASS, getBool=True)
     ECHO = get_config(config, 'config','ECHO', ECHO, getBool=True)
     UPS_NAME = get_config(config, 'device','UPS_NAME', UPS_NAME)
     SMSUPS_FULL_POWER=get_config(config, 'device','SMSUPS_FULL_POWER', SMSUPS_FULL_POWER, getInt=True)
@@ -440,8 +434,6 @@ def get_secrets():
     printC(Color.B_Red, str(DEVELOPERS_MODE))
 
     SHUTDOWN_CMD = get_config(config, 'config', 'SHUTDOWN_CMD', SHUTDOWN_CMD, split = True)
-
-    if ENVIA_HASS: ENVIA_JSON = True
 
 def str2bool(v):
     '''Para evitar problemas com variaveis booleanas inportadas'''
@@ -1043,28 +1035,6 @@ def getNoBreakInfo():
         noBreakInfo['name'] + " / " + 
         noBreakInfo['info'])
 
-
-def publicaDados(upsData):
-    # publica dados no MQTT
-    global status
-    global gMqttEnviado
-    if ENVIA_JSON:
-        upsData.update(noBreakInfo)  # junta outros dados
-        jsonUPS = json.dumps(upsData)
-        (rc, mid) = publicaMqtt(MQTT_PUB + "/json", jsonUPS)
-        gMqttEnviado['b'] = True
-        gMqttEnviado['t'] = datetime.now()
-    if ENVIA_MUITOS:
-        publish_many(MQTT_PUB, upsData)
-        gMqttEnviado['b'] = True
-        gMqttEnviado['t'] = datetime.now()
-    if ENVIA_JSON or ENVIA_HASS or ENVIA_MUITOS:
-        if status['serial'] == 'open' and status['ups'] == 'Connected' and status['mqtt'] == 'on': 
-            status[APP_NAME] = "on"
-        else:
-            status[APP_NAME] = "off"
-        send_clients_status()
-
 def pegaEnv(env):
     ret = ""
     try:
@@ -1097,7 +1067,7 @@ def queryQ(raw = ""):
         printC(Color.B_Red, 'no UPS Data')
         exit()
     if gNoBreakLast['publish_time'] == '': gNoBreakLast = upsData.copy()
-    if False: # ECHO
+    if DEVELOPERS_MODE: # ECHO
         print ('---------')
         print (x)
         mostra_dados(upsData)
@@ -1233,8 +1203,8 @@ def monta_publica_topico(component, sDict, varComuns):
         # print(key,dic)
         if key[:1] != '#':
             varComuns['unique_id']=varComuns['identifiers'] + "_" + key
-            if not('val_tpl' in dic):
-                dic['val_tpl'] = varComuns['unique_id']
+            # if not('val_tpl' in dic):
+            #     dic['val_tpl'] = varComuns['unique_id']
             dic['name'] = varComuns['unique_id']
             dic['device_dict'] = device_dict
             dic['origin_dict'] = origin_dict
@@ -1244,10 +1214,10 @@ def monta_publica_topico(component, sDict, varComuns):
             dados = Template(dados.safe_substitute(dic))
             dados = Template(dados.safe_substitute(varComuns)) # faz ultimas substituições
             dados = dados.safe_substitute(key_todos) # remove os não substituidos.
+            dados = json_remove_vazio(dados)
             topico = MQTT_HASS + "/" + component + "/" + varComuns['unique_id'] + "/config"
             print(topico)
             print(dados)
-            dados = json_remove_vazio(dados)
             (rc, mid) = publicaMqtt(topico, dados)
             # print ("rc: ", rc)
 
@@ -1280,7 +1250,7 @@ def send_hass():
             sensor_dic[k[0]] = json.loads(json_str)
 
     for k in sensor_dic.items():
-        # print('Componente:' + k[0])
+        print('Componente:' + k[0])
         monta_publica_topico(k[0], sensor_dic[k[0]], varComuns)
 
     gDevices_enviados['b'] = True
@@ -1632,8 +1602,7 @@ time.sleep(1.8) # Entre 1.5s a 2s
 
 if SMSUPS_SERVER:
     getNoBreakInfo()
-    if ENVIA_HASS:
-        send_hass()
+    send_hass()
 
 if WEB_SERVER:  # se tiver webserver, inicia o web server
     printC(Color.F_LightBlue, "Web server outorder")
@@ -1650,15 +1619,15 @@ while True:
                 dl.writeJsonFile(FILE_COMM, upsData)
             except Exception as e:
                 mostraErro(e, 30, "Webserver write json")
-        if ENVIA_HASS:   # verifica se vai enviar cabeçalho para HASS
-            if (not gDevices_enviados['b']) and Connected and SMSUPS_SERVER:
-                send_hass
-            elif Connected and SMSUPS_SERVER:
-                time_dif = date_diff_in_Seconds(datetime.now(), \
-                  gDevices_enviados['t'])
-                if time_dif > INTERVALO_HASS:
-                    gDevices_enviados['b'] = False
-                    send_hass() 
+        # verifica se vai enviar cabeçalho para HASS
+        if (not gDevices_enviados['b']) and Connected and SMSUPS_SERVER:
+            send_hass
+        elif Connected and SMSUPS_SERVER:
+            time_dif = date_diff_in_Seconds(datetime.now(), \
+                gDevices_enviados['t'])
+            if time_dif > INTERVALO_HASS:
+                gDevices_enviados['b'] = False
+                send_hass() 
         if not serialOk:
             serialOk = abre_serial()
         if not clientOk: mqttStart()  # tenta client mqqt novamente.
@@ -1669,13 +1638,6 @@ while True:
 
 time.sleep(2)
 ser.close()
-
-
-
-
-
-
-
 
 ''' Resposta do Q
 

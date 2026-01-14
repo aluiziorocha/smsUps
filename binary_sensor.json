@@ -1,7 +1,6 @@
 {
     "#BeepLigado":{
        "name": "BeepLigado",
-       "friendly_name":"Beep Ligado",
        "val_tpl": "{{value_json.BeepLigado}}",
        "pl_on": "on",
        "pl_off": "off",
@@ -10,7 +9,6 @@
     },
     "ShutdownAtivo":{
        "name": "ShutdownAtivo",
-       "friendly_name":"Shutdown Ativo",
        "val_tpl":"{{ value_json.ShutdownAtivo }}",
        "pl_on": "on",
        "pl_off": "off",
@@ -19,7 +17,6 @@
     },
     "TesteAtivo":{
        "name": "TesteAtivo",
-       "friendly_name":"Teste Ativo",
        "val_tpl":"{{ value_json.TesteAtivo }}",
        "pl_on": "on",
        "pl_off": "off",
@@ -28,7 +25,6 @@
     },
     "UpsOk":{
        "name": "UpsOk",
-       "friendly_name":"UPS OK",
        "val_tpl":"{{ value_json.UpsOk }}",
        "device_class":"safety",
        "pl_on": "off",
@@ -38,7 +34,6 @@
     },
     "Boost":{
        "name": "Boost",
-       "friendly_name":"Boost",
        "val_tpl":"{{ value_json.Boost }}",
        "device_class":"power",
        "pl_on": "on",
@@ -48,7 +43,6 @@
     },
     "ByPass":{
        "name": "ByPass",
-       "friendly_name":"ByPass",
        "val_tpl":"{{ value_json.ByPass }}",
        "device_class":"power",
        "pl_on": "on",
@@ -58,7 +52,6 @@
     },
     "BateriaBaixa":{
        "name": "BateriaBaixa",
-       "friendly_name":"Bateria Baixa",
        "val_tpl":"{{ value_json.BateriaBaixa }}",
        "device_class":"battery",
        "pl_on": "on",
@@ -68,7 +61,6 @@
     },
     "BateriaEmUso":{
        "name": "BateriaEmUso",
-       "friendly_name":"Bateria em Uso",
        "val_tpl":"{{ value_json.BateriaEmUso }}",
        "device_class":"battery_charging",
        "pl_on": "on",
