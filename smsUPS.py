@@ -117,7 +117,7 @@ class Color:
     B_White = "\x1b[107m"
 
 # CONST
-VERSAO = '0.45'
+VERSAO = '0.47'
 CR = '0D'
 MANUFACTURER = 'SMS'
 VIA_DEVICE = 'smsUPS'
@@ -1020,7 +1020,7 @@ def getNoBreakInfo():
             noBreakInfo['info'] = hex2Ascii(res)
         if noBreakInfo['name'] == '' or not noBreakInfo['name'][0] == ":": # len(noBreakInfo['name'])+len(noBreakInfo['name'])<5:
             noBreakInfo['name'] = UPS_NAME
-            noBreakInfo['info'] = 'no info'
+            noBreakInfo['info'] = UPS_ID
             status['ups'] = 'off'
         else:
             noBreakInfo['name'] = noBreakInfo['name'][1:]
@@ -1287,7 +1287,7 @@ def serialExist(serialPort, imprime=True):
     ret = False
     if osEnv['os.name'] == 'posix':
         import os
-        res = os.system("ls ".join(serialPort))
+        res = os.system("/bin/ls ".join(serialPort))
         if res==0:
             ret = True
         else:
@@ -1588,10 +1588,10 @@ print ("ALLOW_SHUTDOWN: " + Color.B_Red + str(ALLOW_SHUTDOWN) + Color.B_Default)
 try:
     printC(Color.F_Blue, 'Getting OS Data')
     osEnv = os.environ
-    log.info("os.name: " + str(os.name))
-    log.info("os.getlogin: " + str(os.getlogin()))
-    log.info("os.uname: " + str(os.uname()))
-    log.info("whoami: " + str(os.popen('whoami').read()))
+    print("os.name: " + str(os.name))
+    print("os.getlogin: " + str(os.getlogin()))
+    print("os.uname: " + str(os.uname()))
+    print("whoami: " + str(os.popen('whoami').read()))
 except Exception as e:
     printC(Color.F_Red, "Can't get OS Data")
     mostraErro(e, 10, 'info')
@@ -1599,10 +1599,10 @@ except Exception as e:
 # log.info("VIRTUAL_ENV: " + osEnv['VIRTUAL_ENV'])
 
 # pega novamente os dados do SO (teste)
-dl.dadosOS() 
+#dl.dadosOS() 
 
 # verifica a porta serial
-serialExist('/dev/ttyUSB0')
+#serialExist('/dev/ttyUSB0')
 
 # signals monitor
 signal.signal(signal.SIGTERM, sigterm_handler)
