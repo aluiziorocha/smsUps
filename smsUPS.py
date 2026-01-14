@@ -1234,7 +1234,7 @@ def monta_publica_topico(component, sDict, varComuns):
         if key[:1] != '#':
             varComuns['unique_id']=varComuns['identifiers'] + "_" + key
             if not('val_tpl' in dic):
-                dic['val_tpl'] = dic['name']
+                dic['val_tpl'] = varComuns['unique_id']
             dic['name'] = varComuns['unique_id']
             dic['device_dict'] = device_dict
             dic['origin_dict'] = origin_dict
@@ -1359,7 +1359,7 @@ def mqttStart():
     global client
     global clientOk
     # MQTT Start
-    client = mqtt.Client()
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     log.info("Starting MQTT " + MQTT_HOST)
     log.debug("mqttStart MQTT_PASSWORD: " + str(MQTT_PASSWORD))
     client.username_pw_set(username=MQTT_USERNAME, password=MQTT_PASSWORD)
