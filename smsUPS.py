@@ -45,7 +45,7 @@ INTERVALO_HASS = 600   # How often to send device information in a format compat
 INTERVALO_SERIAL = 3 # How often do I read UPS information on the serial port?
 SERIAL_CHECK_ALWAYS = 'temperatureC, batterylevel, UpsOk, BateriaBaixa, BateriaEmUso'
 MQTT_TOPIC  = "$SYS/#"
-MQTT_PUB = "home/ups"
+MQTT_PUB = "homeassistant/"
 MQTT_HASS = "homeassistant"
 ECHO = True
 SMSUPS_SERVER = True
@@ -199,9 +199,8 @@ statusLast = status.copy()
 
 json_hass = {"sensor": '''
 { 
-  "state_topic": "homeassistant/sensor/$ups_id/state",
+  "state_topic": "homeassistant/$ups_id/state",
   "name": "$name",
-  "friendly_name": "$friendly_name",
   "unique_id": "$unique_id",
   "val_tpl": "$val_tpl",
   "icon": "$icon",
@@ -212,7 +211,7 @@ json_hass = {"sensor": '''
 }''',
     "binary_sensor": '''
 { 
-  "state_topic": "homeassistant/binary_sensor/$ups_id/state",
+  "state_topic": "homeassistant/$ups_id/state",
   "name": "$name",
   "unique_id": "$unique_id",
   "val_tpl": "$val_tpl",
@@ -228,9 +227,8 @@ json_hass = {"sensor": '''
 ''',
     "switch": '''
 { 
-  "state_topic": "homeassistant/switch/$ups_id/state",
+  "state_topic": "homeassistant/$ups_id/state",
   "name": "$name",
-  "friendly_name": "$friendly_name",
   "cmd_t":"home/$ups_id/cmd",
   "icon":"$icon",
   "unique_id": "$unique_id",
@@ -1425,7 +1423,12 @@ def publicaDados(upsData):
     global status
     global gMqttEnviado
     jsonUPS = json.dumps(upsData)
-    (rc, mid) = publicaMqtt(MQTT_PUB + "/json", jsonUPS)
+    topic = MQTT_PUB + UPS_NAME_ID + "/state"
+    payload = jsonUPS
+    if DEVELOPERS_MODE:
+        print(topic)
+        print(payload)
+    (rc, mid) = publicaMqtt(topic, payload)
     gMqttEnviado['b'] = True
     gMqttEnviado['t'] = datetime.now()
     print (Color.F_Blue + "Dados UPS Publicados..." + Color.F_Default + str(datetime.now()))
