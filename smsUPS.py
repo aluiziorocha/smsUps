@@ -56,7 +56,7 @@ SMSUPS_CLIENTE = True
 LOG_FILE = '/var/tmp/smsUPS.log'
 LOG_LEVEL = logging.DEBUG
 ALLOW_SHUTDOWN = True
-DEVELOPERS_MODE = False
+DEVELOPERS_MODE = True
 SHUTDOWN_CMD = '"sudo shutdown -h now", "sudo shutdown now", "systemctl poweroff", "sudo poweroff"'
 # CONFIG Device
 UPS_NAME='UPS'
