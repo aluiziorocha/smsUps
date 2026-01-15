@@ -49,7 +49,7 @@ MQTT_PUB = "homeassistant/"
 MQTT_HASS = "homeassistant"
 ECHO = True
 SMSUPS_SERVER = True
-SMSUPS_CLIENTE = True
+SMSUPS_CLIENTE = False
 LOG_FILE = '/var/tmp/smsUPS.log'
 LOG_LEVEL = logging.DEBUG
 ALLOW_SHUTDOWN = True
@@ -603,12 +603,12 @@ def on_connect(client, userdata, flags, rc):
         else:
             # teste, multiplos topicos
             MQTT_TOPICS = []
-            MQTT_TOPICS.append( (MQTT_TOPIC, 0) )  #TODO ver se vai ficar
-            MQTT_TOPICS.append( (MQTT_PUB + "/cmd", 0) )
-            MQTT_TOPICS.append( (MQTT_PUB + "/json", 0) )
-            MQTT_TOPICS.append( (MQTT_PUB + "/batterylevel", 0) )
-            MQTT_TOPICS.append( (MQTT_PUB + "/BateriaBaixa", 0) )
-            MQTT_TOPICS.append( (MQTT_PUB + "/BateriaEmUso", 0) )
+            # MQTT_TOPICS.append( (MQTT_TOPIC, 0) )  #TODO ver se vai ficar
+            MQTT_TOPICS.append( (MQTT_PUB + "/state", 0) )
+            MQTT_TOPICS.append( (MQTT_PUB + "/set", 0) )
+            # MQTT_TOPICS.append( (MQTT_PUB + "/batterylevel", 0) )
+            # MQTT_TOPICS.append( (MQTT_PUB + "/BateriaBaixa", 0) )
+            # MQTT_TOPICS.append( (MQTT_PUB + "/BateriaEmUso", 0) )
             client.subscribe(MQTT_TOPICS)
             log.info("Subscribe Topics: " + str(MQTT_TOPICS).strip('[]')  )
             print ("Subscribe Topics: " + str(MQTT_TOPICS).strip('[]')  )
@@ -1643,13 +1643,13 @@ while True:
         if (not gDevices_enviados['b']) and Connected and SMSUPS_SERVER:
             # send_hass
             cria_device()
-        elif Connected and SMSUPS_SERVER:
-            time_dif = date_diff_in_Seconds(datetime.now(), \
-                gDevices_enviados['t'])
-            if time_dif > INTERVALO_HASS:
-                gDevices_enviados['b'] = False
-                # send_hass()
-                cria_device()
+        # elif Connected and SMSUPS_SERVER:
+        #     time_dif = date_diff_in_Seconds(datetime.now(), \
+        #         gDevices_enviados['t'])
+        #     if time_dif > INTERVALO_HASS:
+        #         gDevices_enviados['b'] = False
+        #         # send_hass()
+        #         cria_device()
         if not serialOk:
             serialOk = abre_serial()
         if not clientOk: mqttStart()  # tenta client mqqt novamente.
