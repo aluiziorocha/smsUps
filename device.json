@@ -1,0 +1,260 @@
+{
+    "device": {
+            "identifiers": "SMSProWiFi",
+            "name": "UPS SMS Pro WiFi",
+            "manufacturer": "Dot It Yourself (DIY)",
+            "model": "SMS PRO 700Bi WiFi",
+            "sw_version": "1.0"
+    },
+    "origin": {
+            "name":"smsUPS",
+            "sw": "0.49",
+            "url": "https://github.com/dmslabsbr/smsUps"
+    },
+    "components": {
+            "inputVac":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.inputVac}}",
+                "name":"Tensão de entrada",
+                "device_class":"voltage",
+                "state_class":"measurement",
+                "icon":"mdi:transmission-tower-export",
+                "unit_of_measurement":"V"
+            },
+            "outputVac":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.outputVac}}",
+                "name":"Tensão de saída",
+                "icon":"mdi:power-socket-fr",
+                "device_class":"voltage",
+                "state_class":"measurement",
+                "unit_of_measurement":"V"
+            },
+            "outputHz":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.outputHz}}",
+                "name":"Frequência de saída",
+                "icon":"mdi:sine-wave",
+                "state_class":"measurement",
+                "unit_of_measurement":"Hz"
+            },
+            "outputPower":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.outputPower}}",
+                "name":"Nível da carga",
+                "device_class":"power_factor",
+                "unit_of_measurement":"%"
+            },
+            "powerNow":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.powerNow}}",
+                "name":"Potência de saída",
+                "device_class":"power",
+                "state_class":"measurement",
+                "unit_of_measurement":"W"
+            },
+            "batterylevel":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.batterylevel}}",
+                "name":"Nível da bateria",
+                "device_class":"battery",
+                "unit_of_measurement":"%"
+            },
+            "temperatureC":{
+                "platform": "sensor",
+                "val_tpl": "{{value_json.temperatureC}}",
+                "name":"Temperatura",
+                "device_class":"temperature",
+                "unit_of_measurement":"°C"
+            },
+            "BeepLigado":{
+                "platform": "binary_sensor",
+                "name": "BeepLigado",
+                "val_tpl": "{{value_json.BeepLigado}}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "",
+                "pl_not_avail": ""
+            },
+            "ShutdownAtivo":{
+                "platform": "binary_sensor",
+                "name": "ShutdownAtivo",
+                "val_tpl":"{{ value_json.ShutdownAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "TesteAtivo":{
+                "platform": "binary_sensor",
+                "name": "TesteAtivo",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "UpsOk":{
+                "platform": "binary_sensor",
+                "name": "UpsOk",
+                "val_tpl":"{{ value_json.UpsOk }}",
+                "device_class":"safety",
+                "pl_on": "off",
+                "pl_off": "on",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "Boost":{
+                "platform": "binary_sensor",
+                "name": "Boost",
+                "val_tpl":"{{ value_json.Boost }}",
+                "device_class":"power",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "ByPass":{
+                "platform": "binary_sensor",
+                "name": "ByPass",
+                "val_tpl":"{{ value_json.ByPass }}",
+                "device_class":"power",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "BateriaBaixa":{
+                "platform": "binary_sensor",
+                "name": "BateriaBaixa",
+                "val_tpl":"{{ value_json.BateriaBaixa }}",
+                "device_class":"battery",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "BateriaEmUso":{
+                "platform": "binary_sensor",
+                "name": "BateriaEmUso",
+                "val_tpl":"{{ value_json.BateriaEmUso }}",
+                "device_class":"battery",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            },
+            "Beep":{
+                "platform": "switch",
+                "name": "Alarme Sonoro",
+                "icon":"mdi:music-note",
+                "val_tpl":"{{ value_json.BeepLigado }}",
+                "pl_on": {
+                    "cmd": "M"
+                },
+                    "pl_off": {
+                    "cmd": "M"
+                },
+                "pl_avail": "on",
+                "pl_not_avail": "off",
+                "state_off": "off",
+                "state_on": "on" 
+            },
+            "test_10s":{
+                "platform": "switch",
+                "name":"Teste de 10 segundos",
+                "icon":"mdi:timer-10",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": {
+                    "cmd": "T"
+                },
+                "pl_off": {"cmd": "D"},
+                "pl_avail": "on",
+                "pl_not_avail": "off",
+                "state_off": "off",
+                "state_on": "on"
+            },
+            "test_01m":{
+                "platform": "switch",
+                "name":"Teste de 1 minuto",
+                "icon":"mdi:timer-sand",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": {
+                    "cmd": "TN",
+                    "val": "60"
+                },
+                "pl_off": {"cmd": "D"},
+                "pl_avail": "on",
+                "pl_not_avail": "off",
+                "state_off": "off",
+                "state_on": "on"
+            },
+            "test_05m":{
+                "platform": "switch",
+                "name":"Teste de 5 minutos",
+                "icon":"mdi:timer-sand",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": {
+                    "cmd": "TN",
+                    "val": "300"
+                },
+                "pl_off": {"cmd": "D"},
+                "pl_avail": "on",
+                "pl_not_avail": "off",
+                "state_off": "off",
+                "state_on": "on"
+            },
+            "test_15m":{
+                "platform": "switch",
+                "name":"Teste de 15 minutos",
+                "icon":"mdi:timer-sand",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": {
+                    "cmd": "TN",
+                    "val": "900"
+                },
+                "pl_off": {"cmd": "D"},
+                "pl_avail": "on",
+                "pl_not_avail": "off",
+                "state_off": "off",
+                "state_on": "on"
+            },
+            "cancel_Shutdown":{
+                "platform": "switch",
+                "name":"Cancelar Desligamento",
+                "icon":"mdi:cancel",
+                "val_tpl":"{{ value_json.ShutdownAtivo }}",
+                "pl_on": {"cmd": "C"},
+                "pl_off": {"cmd": "C"},
+                "pl_avail": "off",
+                "pl_not_avail": "on",
+                "state_off": "on",
+                "state_on": "off"
+            },
+            "cancel_test":{
+                "platform": "switch",
+                "name":"Cancelar Teste",
+                "icon":"mdi:cancel",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": {"cmd": "D"},
+                "pl_off": {"cmd": "D"},
+                "pl_avail": "off",
+                "pl_not_avail": "on",
+                "state_off": "on",
+                "state_on": "off"
+            },
+            "test_low":{
+                "platform": "switch",
+                "name":"Teste de bateria fraca",
+                "icon":"mdi:timer-sand",
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": {"cmd": "L"},
+                "pl_off": {"cmd": "C"},
+                "pl_avail": "on",
+                "pl_not_avail": "off"
+            }
+    },
+    "state_topic":"homeassistant/ups_SMSProWiFi_01/state",
+    "command_topic":"homeassistant/ups_SMSProWiFi_01/cmd",
+    "qos": 2
+}

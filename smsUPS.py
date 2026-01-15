@@ -1191,6 +1191,23 @@ def json_remove_vazio(strJson):
             cp_dados.pop(k)  # remove vazio
     return json.dumps(cp_dados) # converte dict para json
 
+def cria_device():
+    json_file_path = 'device.json'
+    if IN_HASSIO:
+        json_file_path = '/' + json_file_path  # to run on HASS.IO
+    if not os.path.isfile(json_file_path):
+        log.error(json_file_path + " not found!")
+    json_file = open(json_file_path)
+    json_str = json_file.read()
+    payload = json.loads(json_str)
+    topic = MQTT_HASS + "/device/" + UPS_NAME_ID + "/config"
+    print(topic)
+    print(payload)
+    (rc, mid) = publicaMqtt(topic, payload)
+    gDevices_enviados['b'] = True
+    gDevices_enviados['t'] = datetime.now()
+    if DEVELOPERS_MODE:
+        log.debug('Device Created')
 
 def monta_publica_topico(component, sDict, varComuns):
     ''' monta e envia topico '''
@@ -1624,13 +1641,15 @@ while True:
                 mostraErro(e, 30, "Webserver write json")
         # verifica se vai enviar cabeçalho para HASS
         if (not gDevices_enviados['b']) and Connected and SMSUPS_SERVER:
-            send_hass
+            # send_hass
+            cria_device()
         elif Connected and SMSUPS_SERVER:
             time_dif = date_diff_in_Seconds(datetime.now(), \
                 gDevices_enviados['t'])
             if time_dif > INTERVALO_HASS:
                 gDevices_enviados['b'] = False
-                send_hass() 
+                # send_hass()
+                cria_device()
         if not serialOk:
             serialOk = abre_serial()
         if not clientOk: mqttStart()  # tenta client mqqt novamente.
