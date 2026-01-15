@@ -218,5 +218,6 @@
     },
     "state_topic":"homeassistant/ups_SMSProWiFi_01/state",
     "command_topic":"homeassistant/ups_SMSProWiFi_01/set",
+    "expire_after":"60",
     "qos": 2
 }
