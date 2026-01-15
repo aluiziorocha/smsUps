@@ -53,7 +53,7 @@ SMSUPS_CLIENTE = False
 LOG_FILE = '/var/tmp/smsUPS.log'
 LOG_LEVEL = logging.DEBUG
 ALLOW_SHUTDOWN = True
-DEVELOPERS_MODE = True
+DEVELOPERS_MODE = False
 SHUTDOWN_CMD = '"sudo shutdown -h now", "sudo shutdown now", "systemctl poweroff", "sudo poweroff"'
 # CONFIG Device
 UPS_NAME='UPS'
@@ -114,7 +114,7 @@ class Color:
     B_White = "\x1b[107m"
 
 # CONST
-VERSAO = '0.49'
+VERSAO = '0.50'
 CR = '0D'
 MANUFACTURER = 'SMS'
 VIA_DEVICE = 'smsUPS'
