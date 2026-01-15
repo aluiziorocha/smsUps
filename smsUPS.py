@@ -114,7 +114,7 @@ class Color:
     B_White = "\x1b[107m"
 
 # CONST
-VERSAO = '0.48'
+VERSAO = '0.49'
 CR = '0D'
 MANUFACTURER = 'SMS'
 VIA_DEVICE = 'smsUPS'
@@ -1343,7 +1343,7 @@ def mqttStart():
     global client
     global clientOk
     # MQTT Start
-    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
+    client = mqtt.Client()
     log.info("Starting MQTT " + MQTT_HOST)
     log.debug("mqttStart MQTT_PASSWORD: " + str(MQTT_PASSWORD))
     client.username_pw_set(username=MQTT_USERNAME, password=MQTT_PASSWORD)
@@ -1581,16 +1581,16 @@ print ("ALLOW_SHUTDOWN: " + Color.B_Red + str(ALLOW_SHUTDOWN) + Color.B_Default)
 # print ("Long_lived_access_token: " + Color.F_Magenta + Long_lived_access_token + Color.F_Default)
 
 # info
-try:
-    printC(Color.F_Blue, 'Getting OS Data')
-    osEnv = os.environ
-    print("os.name: " + str(os.name))
-    print("os.getlogin: " + str(os.getlogin()))
-    print("os.uname: " + str(os.uname()))
-    print("whoami: " + str(os.popen('whoami').read()))
-except Exception as e:
-    printC(Color.F_Red, "Can't get OS Data")
-    mostraErro(e, 10, 'info')
+# try:
+#     printC(Color.F_Blue, 'Getting OS Data')
+#     osEnv = os.environ
+#     print("os.name: " + str(os.name))
+#     print("os.getlogin: " + str(os.getlogin()))
+#     print("os.uname: " + str(os.uname()))
+#     print("whoami: " + str(os.popen('whoami').read()))
+# except Exception as e:
+#     printC(Color.F_Red, "Can't get OS Data")
+#     mostraErro(e, 10, 'info')
 # if 'VIRTUAL_ENV' in osEnv
 # log.info("VIRTUAL_ENV: " + osEnv['VIRTUAL_ENV'])
 
