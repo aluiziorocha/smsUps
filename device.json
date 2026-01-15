@@ -14,6 +14,7 @@
     "components": {
             "inputVac":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_inputVac",
                 "val_tpl": "{{value_json.inputVac}}",
                 "name":"Tensão de entrada",
                 "device_class":"voltage",
@@ -23,6 +24,7 @@
             },
             "outputVac":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_outputVac",
                 "val_tpl": "{{value_json.outputVac}}",
                 "name":"Tensão de saída",
                 "icon":"mdi:power-socket-fr",
@@ -32,6 +34,7 @@
             },
             "outputHz":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_outputHz",
                 "val_tpl": "{{value_json.outputHz}}",
                 "name":"Frequência de saída",
                 "icon":"mdi:sine-wave",
@@ -40,6 +43,7 @@
             },
             "outputPower":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_outputPower",
                 "val_tpl": "{{value_json.outputPower}}",
                 "name":"Nível da carga",
                 "device_class":"power_factor",
@@ -47,6 +51,7 @@
             },
             "powerNow":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_powerNow",
                 "val_tpl": "{{value_json.powerNow}}",
                 "name":"Potência de saída",
                 "device_class":"power",
@@ -55,6 +60,7 @@
             },
             "batterylevel":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_batterylevel",
                 "val_tpl": "{{value_json.batterylevel}}",
                 "name":"Nível da bateria",
                 "device_class":"battery",
@@ -62,6 +68,7 @@
             },
             "temperatureC":{
                 "platform": "sensor",
+                "unique_id":"SMSProWiFi_01_temperatureC",
                 "val_tpl": "{{value_json.temperatureC}}",
                 "name":"Temperatura",
                 "device_class":"temperature",
@@ -69,6 +76,7 @@
             },
             "BeepLigado":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_BeepLigado",
                 "name": "BeepLigado",
                 "val_tpl": "{{value_json.BeepLigado}}",
                 "pl_on": "on",
@@ -78,6 +86,7 @@
             },
             "ShutdownAtivo":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_ShutdownAtivo",
                 "name": "ShutdownAtivo",
                 "val_tpl":"{{ value_json.ShutdownAtivo }}",
                 "pl_on": "on",
@@ -87,6 +96,7 @@
             },
             "TesteAtivo":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_TesteAtivo",
                 "name": "TesteAtivo",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
                 "pl_on": "on",
@@ -96,6 +106,7 @@
             },
             "UpsOk":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_UpsOk",
                 "name": "UpsOk",
                 "val_tpl":"{{ value_json.UpsOk }}",
                 "device_class":"safety",
@@ -106,6 +117,7 @@
             },
             "Boost":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_Boost",
                 "name": "Boost",
                 "val_tpl":"{{ value_json.Boost }}",
                 "device_class":"power",
@@ -116,6 +128,7 @@
             },
             "ByPass":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_ByPass",
                 "name": "ByPass",
                 "val_tpl":"{{ value_json.ByPass }}",
                 "device_class":"power",
@@ -126,6 +139,7 @@
             },
             "BateriaBaixa":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_BateriaBaixa",
                 "name": "BateriaBaixa",
                 "val_tpl":"{{ value_json.BateriaBaixa }}",
                 "device_class":"battery",
@@ -136,6 +150,7 @@
             },
             "BateriaEmUso":{
                 "platform": "binary_sensor",
+                "unique_id":"SMSProWiFi_01_BateriaEmUso",
                 "name": "BateriaEmUso",
                 "val_tpl":"{{ value_json.BateriaEmUso }}",
                 "device_class":"battery",
@@ -146,6 +161,7 @@
             },
             "Beep":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_Beep",
                 "name": "Alarme Sonoro",
                 "icon":"mdi:music-note",
                 "val_tpl":"{{ value_json.BeepLigado }}",
@@ -162,6 +178,7 @@
             },
             "test_10s":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_test_10s",
                 "name":"Teste de 10 segundos",
                 "icon":"mdi:timer-10",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -176,6 +193,7 @@
             },
             "test_01m":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_test_01m",
                 "name":"Teste de 1 minuto",
                 "icon":"mdi:timer-sand",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -191,6 +209,7 @@
             },
             "test_05m":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_test_05m",
                 "name":"Teste de 5 minutos",
                 "icon":"mdi:timer-sand",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -206,6 +225,7 @@
             },
             "test_15m":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_test_15m",
                 "name":"Teste de 15 minutos",
                 "icon":"mdi:timer-sand",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -221,6 +241,7 @@
             },
             "cancel_Shutdown":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_cancel_Shutdown",
                 "name":"Cancelar Desligamento",
                 "icon":"mdi:cancel",
                 "val_tpl":"{{ value_json.ShutdownAtivo }}",
@@ -233,6 +254,7 @@
             },
             "cancel_test":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_cancel_test",
                 "name":"Cancelar Teste",
                 "icon":"mdi:cancel",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
@@ -245,6 +267,7 @@
             },
             "test_low":{
                 "platform": "switch",
+                "unique_id":"SMSProWiFi_01_test_low",
                 "name":"Teste de bateria fraca",
                 "icon":"mdi:timer-sand",
                 "val_tpl":"{{ value_json.TesteAtivo }}",
