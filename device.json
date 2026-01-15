@@ -2,8 +2,8 @@
     "device": {
             "identifiers": "SMSProWiFi",
             "name": "UPS SMS Pro WiFi",
-            "manufacturer": "Dot It Yourself (DIY)",
-            "model": "SMS PRO 700Bi WiFi",
+            "manufacturer": "SMS",
+            "model": "PRO 700Bi WiFi",
             "sw_version": "1.0"
     },
     "origin": {
@@ -77,204 +77,111 @@
             "BeepLigado":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_BeepLigado",
-                "name": "BeepLigado",
-                "val_tpl": "{{value_json.BeepLigado}}",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "",
-                "pl_not_avail": ""
+                "name": "Beep Ligado",
+                "val_tpl": "{{value_json.BeepLigado}}"
             },
             "ShutdownAtivo":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_ShutdownAtivo",
-                "name": "ShutdownAtivo",
-                "val_tpl":"{{ value_json.ShutdownAtivo }}",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "name": "Shutdown Ativo",
+                "val_tpl":"{{ value_json.ShutdownAtivo }}"
             },
             "TesteAtivo":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_TesteAtivo",
-                "name": "TesteAtivo",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "name": "Teste Ativo",
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             },
             "UpsOk":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_UpsOk",
-                "name": "UpsOk",
+                "name": "UPS OK",
                 "val_tpl":"{{ value_json.UpsOk }}",
-                "device_class":"safety",
-                "pl_on": "off",
-                "pl_off": "on",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "device_class":"safety"
             },
             "Boost":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_Boost",
                 "name": "Boost",
                 "val_tpl":"{{ value_json.Boost }}",
-                "device_class":"power",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "device_class":"power"
             },
             "ByPass":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_ByPass",
                 "name": "ByPass",
                 "val_tpl":"{{ value_json.ByPass }}",
-                "device_class":"power",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "device_class":"power"
             },
             "BateriaBaixa":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_BateriaBaixa",
-                "name": "BateriaBaixa",
+                "name": "Bateria Baixa",
                 "val_tpl":"{{ value_json.BateriaBaixa }}",
-                "device_class":"battery",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "device_class":"battery"
             },
             "BateriaEmUso":{
                 "platform": "binary_sensor",
                 "unique_id":"SMSProWiFi_01_BateriaEmUso",
-                "name": "BateriaEmUso",
+                "name": "Bateria em Uso",
                 "val_tpl":"{{ value_json.BateriaEmUso }}",
-                "device_class":"battery",
-                "pl_on": "on",
-                "pl_off": "off",
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "device_class":"battery"
             },
             "Beep":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_Beep",
                 "name": "Alarme Sonoro",
                 "icon":"mdi:music-note",
-                "val_tpl":"{{ value_json.BeepLigado }}",
-                "pl_on": {
-                    "cmd": "M"
-                },
-                    "pl_off": {
-                    "cmd": "M"
-                },
-                "pl_avail": "on",
-                "pl_not_avail": "off",
-                "state_off": "off",
-                "state_on": "on" 
+                "val_tpl":"{{ value_json.BeepLigado }}"
             },
             "test_10s":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_10s",
                 "name":"Teste de 10 segundos",
                 "icon":"mdi:timer-10",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": {
-                    "cmd": "T"
-                },
-                "pl_off": {"cmd": "D"},
-                "pl_avail": "on",
-                "pl_not_avail": "off",
-                "state_off": "off",
-                "state_on": "on"
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             },
             "test_01m":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_01m",
                 "name":"Teste de 1 minuto",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": {
-                    "cmd": "TN",
-                    "val": "60"
-                },
-                "pl_off": {"cmd": "D"},
-                "pl_avail": "on",
-                "pl_not_avail": "off",
-                "state_off": "off",
-                "state_on": "on"
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             },
             "test_05m":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_05m",
                 "name":"Teste de 5 minutos",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": {
-                    "cmd": "TN",
-                    "val": "300"
-                },
-                "pl_off": {"cmd": "D"},
-                "pl_avail": "on",
-                "pl_not_avail": "off",
-                "state_off": "off",
-                "state_on": "on"
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             },
             "test_15m":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_15m",
                 "name":"Teste de 15 minutos",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": {
-                    "cmd": "TN",
-                    "val": "900"
-                },
-                "pl_off": {"cmd": "D"},
-                "pl_avail": "on",
-                "pl_not_avail": "off",
-                "state_off": "off",
-                "state_on": "on"
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             },
             "cancel_Shutdown":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_cancel_Shutdown",
                 "name":"Cancelar Desligamento",
                 "icon":"mdi:cancel",
-                "val_tpl":"{{ value_json.ShutdownAtivo }}",
-                "pl_on": {"cmd": "C"},
-                "pl_off": {"cmd": "C"},
-                "pl_avail": "off",
-                "pl_not_avail": "on",
-                "state_off": "on",
-                "state_on": "off"
+                "val_tpl":"{{ value_json.ShutdownAtivo }}"
             },
             "cancel_test":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_cancel_test",
                 "name":"Cancelar Teste",
                 "icon":"mdi:cancel",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": {"cmd": "D"},
-                "pl_off": {"cmd": "D"},
-                "pl_avail": "off",
-                "pl_not_avail": "on",
-                "state_off": "on",
-                "state_on": "off"
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             },
             "test_low":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_low",
                 "name":"Teste de bateria fraca",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}",
-                "pl_on": {"cmd": "L"},
-                "pl_off": {"cmd": "C"},
-                "pl_avail": "on",
-                "pl_not_avail": "off"
+                "val_tpl":"{{ value_json.TesteAtivo }}"
             }
     },
     "state_topic":"homeassistant/ups_SMSProWiFi_01/state",
