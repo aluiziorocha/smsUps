@@ -217,6 +217,6 @@
             }
     },
     "state_topic":"homeassistant/ups_SMSProWiFi_01/state",
-    "command_topic":"homeassistant/ups_SMSProWiFi_01/cmd",
+    "command_topic":"homeassistant/ups_SMSProWiFi_01/set",
     "qos": 2
 }
