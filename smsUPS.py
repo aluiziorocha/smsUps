@@ -1198,8 +1198,7 @@ def cria_device():
     if not os.path.isfile(json_file_path):
         log.error(json_file_path + " not found!")
     json_file = open(json_file_path)
-    json_str = json_file.read()
-    payload = json.loads(json_str)
+    payload = json_file.read()
     topic = MQTT_HASS + "/device/" + UPS_NAME_ID + "/config"
     print(topic)
     print(payload)
@@ -1248,7 +1247,7 @@ def send_hass():
                  'manufacturer': MANUFACTURER,
                  'device_name': noBreakInfo['name'],
                  'identifiers': UPS_NAME + "_" + UPS_ID,
-#                 'via_device': VIA_DEVICE,
+                 'via_device': VIA_DEVICE,
                  'ups_id': UPS_NAME_ID,
                  'unique_id': UPS_ID}
     if DEVELOPERS_MODE:
