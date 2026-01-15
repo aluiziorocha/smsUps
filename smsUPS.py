@@ -1622,7 +1622,8 @@ time.sleep(1.8) # Entre 1.5s a 2s
 
 if SMSUPS_SERVER:
     getNoBreakInfo()
-    send_hass()
+    # send_hass()
+    cria_device()
 
 if WEB_SERVER:  # se tiver webserver, inicia o web server
     printC(Color.F_LightBlue, "Web server outorder")
