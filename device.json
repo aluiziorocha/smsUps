@@ -164,56 +164,88 @@
                 "unique_id":"SMSProWiFi_01_Beep",
                 "name": "Alarme Sonoro",
                 "icon":"mdi:music-note",
-                "val_tpl":"{{ value_json.BeepLigado }}"
+                "val_tpl":"{{ value_json.BeepLigado }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "test_10s":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_10s",
                 "name":"Teste de 10 segundos",
                 "icon":"mdi:timer-10",
-                "val_tpl":"{{ value_json.TesteAtivo }}"
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "test_01m":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_01m",
                 "name":"Teste de 1 minuto",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}"
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "test_05m":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_05m",
                 "name":"Teste de 5 minutos",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}"
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "test_15m":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_15m",
                 "name":"Teste de 15 minutos",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}"
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "cancel_Shutdown":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_cancel_Shutdown",
                 "name":"Cancelar Desligamento",
                 "icon":"mdi:cancel",
-                "val_tpl":"{{ value_json.ShutdownAtivo }}"
+                "val_tpl":"{{ value_json.ShutdownAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "cancel_test":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_cancel_test",
                 "name":"Cancelar Teste",
                 "icon":"mdi:cancel",
-                "val_tpl":"{{ value_json.TesteAtivo }}"
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             },
             "test_low":{
                 "platform": "switch",
                 "unique_id":"SMSProWiFi_01_test_low",
                 "name":"Teste de bateria fraca",
                 "icon":"mdi:timer-sand",
-                "val_tpl":"{{ value_json.TesteAtivo }}"
+                "val_tpl":"{{ value_json.TesteAtivo }}",
+                "pl_on": "on",
+                "pl_off": "off",
+                "pl_avail": "on",
+                "pl_not_avail": "off"
             }
     },
     "state_topic":"homeassistant/ups_SMSProWiFi_01/state",
